@@ -1,28 +1,16 @@
 var assert = require('assert');
-var hamjest = require('hamjest');
-var promiseThat = hamjest.promiseThat;
-var isRejectedWith = hamjest.isRejectedWith;
+let {promiseThat, isRejectedWith} = require('hamjest');
 
-var KATAS_URL = 'http://katas.tddbin.com/katas/es6/language/__grouped__.json';
-var INVALID_URL = 'http://katas.tddbin.com/katas/es6/language/__all__.json';
-var fetch = require('node-fetch');
+const URL_PREFIX = 'http://katas.tddbin.com/katas/es6/language/';
+const KATAS_URL = `${URL_PREFIX}__grouped__.json`;
+const INVALID_URL = `${URL_PREFIX}__all__.json`;
+
+import GroupedKatas from './index';
 
 function loadKatasJsonFrom(url) {
-  return fetch(url)
-    .then(function(res) {
-      return res.json();
-    })
-    .catch(function() {
-      throw 'Error loading katas.'
-    })
-    .then(function(katasJson) {
-      if ('groups' in katasJson) {
-        return katasJson;
-      }
-      throw 'Invalid JSON format.'
-    })
-    ;
+  return new GroupedKatas().load(url);
 }
+
 describe('loading the katas JSON', () => {
   it('works', () => {
     return loadKatasJsonFrom(KATAS_URL);
