@@ -1,0 +1,17 @@
+{
+  "name": "es6-workshop-2016",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha src",
+    "watch:test": "npm test -- --watch"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "hamjest": "^2.13.0",
+    "mocha": "^2.4.5",
+    "node-fetch": "^1.3.3"
+  }
+}
