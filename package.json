@@ -6,7 +6,9 @@
   "scripts": {
     "test": "mocha src --compilers js:babel-register",
     "watch:test": "npm test -- --watch",
-    "build": "browserify src/index.js --transform=babelify --outfile=src/index-es5.js"
+    "build": "mkdir dist; npm run build:app && npm run build:html",
+    "build:html": "cp src/index.html dist",
+    "build:app": "browserify src/index.js --transform=babelify --outfile=dist/index.js"
   },
   "author": "",
   "license": "MIT",
